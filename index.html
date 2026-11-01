@@ -125,35 +125,44 @@ margin:auto;
 .layout{
 display:flex;
 flex-direction:column;
-gap:20px;
-}
-
-.left{
-border-right:none;
-padding-right:0;
-width:100%;
 }
 
 .right{
+order:1;
 width:100%;
 }
 
-.cover{
-max-width:350px;
+.left{
+order:2;
+
+width:100%;
+
+border-right:none;
+padding-right:0;
 }
 
 .description{
+order:3;
+
 width:auto;
 max-width:none;
+
 margin:20px 0;
 }
 
+.cover{
+max-width:320px;
+}
+
 h1{
-font-size:42px;
+font-size:36px;
 }
 
 h2{
-font-size:28px;
+font-size:26px;
+text-align:center;
+}
+
 }
 
 .links{
