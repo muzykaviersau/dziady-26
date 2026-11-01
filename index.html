@@ -2,18 +2,180 @@
 <html lang="be">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дзяды</title>
-</head>
 
-<body style="background:#111; color:white; text-align:center; font-family:Georgia;">
+<style>
+body{
+    background:#111;
+    color:#eee;
+    font-family:Georgia, serif;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.cover{
+    width:300px;
+    border-radius:12px;
+    display:block;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-top:20px;
+}
+
+.player{
+    width:100%;
+    margin:20px 0;
+}
+
+.track{
+    background:#1d1d1d;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.track:hover{
+    background:#2e2e2e;
+}
+
+.active{
+    background:#604020;
+}
+
+.author{
+    color:#b8b8b8;
+    font-size:0.9em;
+}
+
+.now{
+    margin:20px 0;
+    font-size:1.1em;
+}
+</style>
+
+</head>
+<body>
+
+<img src="cover.jpg" class="cover">
 
 <h1>Дзяды</h1>
 
-<p>Музычны альбом</p>
+<div class="now">
+Цяпер грае:
+<span id="currentTrack">Нічога не выбрана</span>
+</div>
 
-<audio controls>
-<source src="https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/7ff496dd-87ab-48a7-a8a1-55985f8daa9d.mp3">
-</audio>
+<audio id="player" controls class="player"></audio>
+
+<div id="playlist"></div>
+
+<script>
+
+const tracks = [
+
+{
+title:"НА ДЗЯДЫ",
+author:"Адам Міцкевіч",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/7ff496dd-87ab-48a7-a8a1-55985f8daa9d.mp3"
+},
+
+{
+title:"ОЙ, СКАЖЫ МНЕ, ВЕЦЕР ВОЛЬНЫ...",
+author:"Якуб Колас",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/0e39ec74-36e9-4fdf-938b-54945362491c.mp3"
+},
+
+{
+title:"СОХНУ МАРНА Я Ў АСТРОЗЕ...",
+author:"Якуб Колас",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/1f62db18-11ab-497e-a0d8-e1ea0885cf82.mp3"
+},
+
+{
+title:"НА ЛЕДЗЯНОЙ ГІТАРЫ",
+author:"Тодар Кляшторны",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/6450ca26-bd43-40ef-9557-6734ca3e5689.mp3"
+},
+
+{
+title:"ГАДАНЬНЕ",
+author:"Цётка",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/f6692ab8-3729-4ffd-9aa5-4533658da976.mp3"
+},
+
+{
+title:"НЕ ПРАШУ!",
+author:"Ларыса Геніюш",
+url:"https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/826f3dad-9958-40bc-8997-206828f84338.mp3"
+}
+
+];
+
+const player = document.getElementById("player");
+const playlist = document.getElementById("playlist");
+const currentTrack = document.getElementById("currentTrack");
+
+let current = 0;
+
+function loadTrack(index){
+
+current = index;
+
+player.src = tracks[index].url;
+
+currentTrack.textContent =
+tracks[index].title + " — " +
+tracks[index].author;
+
+document
+.querySelectorAll(".track")
+.forEach((el,i)=>{
+el.classList.toggle("active",i===index);
+});
+
+}
+
+tracks.forEach((track,index)=>{
+
+const div=document.createElement("div");
+
+div.className="track";
+
+div.innerHTML=
+"<strong>"+track.title+"</strong><br>" +
+"<span class='author'>"+
+track.author+
+"</span>";
+
+div.onclick=()=>{
+loadTrack(index);
+player.play();
+};
+
+playlist.appendChild(div);
+
+});
+
+player.addEventListener("ended",()=>{
+
+if(current<tracks.length-1){
+
+loadTrack(current+1);
+player.play();
+
+}
+
+});
+
+loadTrack(0);
+
+</script>
 
 </body>
 </html>
