@@ -10,16 +10,8 @@ body{
     background:#111;
     color:#eee;
     font-family:Georgia, serif;
-    max-width:900px;
-    margin:auto;
-    padding:20px;
-}
-
-.cover{
-    width:300px;
-    border-radius:12px;
-    display:block;
-    margin:auto;
+    margin:0;
+    padding:40px;
 }
 
 h1{
@@ -56,6 +48,39 @@ h1{
 .now{
     margin:20px 0;
     font-size:1.1em;
+}
+.layout{
+display:flex;
+gap:40px;
+max-width:1200px;
+margin:auto;
+align-items:flex-start;
+}
+
+.left{
+flex:1;
+}
+
+.right{
+width:450px;
+position:sticky;
+top:30px;
+text-align:center;
+}
+
+.description{
+color:#d0d0d0;
+line-height:1.8;
+margin-top:20px;
+text-align:left;
+}
+
+.cover{
+width:100%;
+max-width:420px;
+border-radius:12px;
+display:block;
+margin:auto;
 }
 </style>
 
