@@ -62,19 +62,47 @@ h1{
 </head>
 <body>
 
+<div class="layout">
+
+<div class="left">
+
+<h2>Трэкі</h2>
+
+<div id="playlist"></div>
+
+<audio id="player" controls class="player"></audio>
+
+<div class="now">
+Цяпер грае:<br>
+<span id="currentTrack">Нічога не выбрана</span>
+</div>
+
+</div>
+
+<div class="right">
+
 <img src="cover.jpg" class="cover">
 
 <h1>Дзяды</h1>
 
-<div class="now">
-Цяпер грае:
-<span id="currentTrack">Нічога не выбрана</span>
+<div class="description">
+
+<p>
+Музычны цыкл паводле матываў паэмы
+«Дзяды» Адама Міцкевіча.
+</p>
+
+<p>
+У цыкл таксама ўвайшлі творы
+Якуба Коласа, Тодара Кляшторнага,
+Цёткі і Ларысы Геніюш.
+</p>
+
 </div>
 
-<audio id="player" controls class="player"></audio>
+</div>
 
-<div id="playlist"></div>
-
+</div>
 <script>
 
 const tracks = [
