@@ -337,9 +337,14 @@ player.addEventListener("ended",()=>{
 if(current<tracks.length-1){
 
 loadTrack(current+1);
-player.play();
+
+}else{
+
+loadTrack(0);
 
 }
+
+player.play();
 
 });
 
