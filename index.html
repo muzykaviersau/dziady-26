@@ -239,6 +239,8 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
+
+          align-items: center;
         }
         .active {
           background: #7a5228 !important;
@@ -247,10 +249,14 @@
         .left {
           border-right: none;
           padding-right: 0;
+          padding-left: 0;
           width: 100%;
         }
         .hero {
-          position: relative;
+          width: 300px;
+          max-width: 300px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .mobile-caption {
           display: block;
@@ -260,6 +266,23 @@
         }
         .subtitle {
           display: none;
+        }
+        .player {
+          display: block;
+          width: 300px;
+          max-width: 300px;
+          margin: 0 auto;
+        }
+        #playlist {
+          width: 300px;
+          max-width: 300px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero {
+          max-width: 300px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .author {
           font-size: 0.75em;
@@ -300,11 +323,12 @@
           display: none;
         }
         .description {
-          width: 100%;
+          width: 300%;
+          max-width: 300px;
           box-sizing: border-box;
-          max-width: none;
 
-          margin: 20px 0;
+          margin-left: auto;
+          margin-right: auto;
           padding: 38% 5% 25% 5%;
 
           font-size: 18px;
