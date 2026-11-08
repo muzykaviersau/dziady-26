@@ -94,7 +94,19 @@
 
       .author {
         color: #d8c5a0;
-        font-size: 0.9em;
+        font-size: 0.75em;
+        margin: 0;
+        line-height: 1.1;
+        font-family: Inter, Arial, sans-serif;
+        font-family: "Inter", sans-serif;
+        font-weight: 300; /* Light */
+      }
+      .track strong {
+        margin-bottom: 2px;
+        font-size: 12px;
+        line-height: 1.8;
+        font-family: "Inter", sans-serif;
+        font-weight: 500; /* Medium */
       }
 
       .now {
@@ -143,7 +155,7 @@
 
         margin: 1px auto;
 
-        padding: 78% 4% 15% 20%;
+        padding: 78% 5% 25% 5%;
 
         color: #f0f0f0;
         font-family: Inter;
@@ -201,57 +213,132 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-left: 10px;
+        padding-left: 20px;
       }
-
+      .project-brand {
+        position: fixed;
+        left: 14px;
+        bottom: 90px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.55;
+        z-index: 999;
+      }
       .hero-info h1 {
         padding-left: 40px;
         margin: 0 0 10px;
       }
 
-     @media (max-width: 900px) {
+      @media (max-width: 900px) {
         .layout {
+          width: 100%;
+          max-width: 100%;
+          margin: 0;
+
           display: flex;
           flex-direction: column;
           gap: 20px;
         }
-        .active{
-    background:#7a5228 !important;
-    box-shadow:0 0 15px rgba(216,179,106,.25) !important;
-}
+        .active {
+          background: #7a5228 !important;
+          box-shadow: 0 0 15px rgba(216, 179, 106, 0.25) !important;
+        }
         .left {
           border-right: none;
           padding-right: 0;
-          width: 100%;
+          width: 88%;
         }
-        .title{
-    display:none;
-}
-        .subtitle{
-    display:none;
-}
+        .hero {
+          position: relative;
+        }
+        .mobile-caption {
+          display: block;
+        }
+        .title {
+          display: none;
+        }
+        .subtitle {
+          display: none;
+        }
+        .author {
+          font-size: 0.75em;
+          margin: 0;
+          line-height: 1.1;
+          font-family: Inter, Arial, sans-serif;
+          font-family: "Inter", sans-serif;
+          font-weight: 300; /* Light */
+        }
+        .track strong {
+          margin-bottom: 2px;
+          font-size: 12px;
+          line-height: 1.8;
+          font-family: "Inter", sans-serif;
+          font-weight: 500; /* Medium */
+        }
+        .track {
+          padding: 7px 12px;
+          gap: 0;
+          line-height: 1.1;
+        }
         .right {
           flex: 2;
+          width: 100%;
+          max-width: 100%;
+          transform: none;
         }
-
         .cover {
           max-width: 350px;
         }
-        #visualizer{
-          display:none;
+        #visualizer {
+          display: none;
         }
-       .now{
-    display:none;
-}
-       .track-marquee{
-    display:none;
-}
+        .now {
+          display: none;
+        }
+        .track-marquee {
+          display: none;
+        }
         .description {
-          width: auto;
+          width: 104%;
+          box-sizing: border-box;
           max-width: none;
+
           margin: 20px 0;
+          padding: 38% 5% 25% 5%;
+
+          font-size: 18px;
+          line-height: 1.8;
+
+          border-right: 3px solid #c18b3a;
+          background-size: cover;
+          background-position: center;
+        }
+        .project-brand {
+          position: fixed;
+          left: 30px;
+          bottom: 30px;
+
+          gap: 10px;
+
+          opacity: 0;
+          visibility: hidden;
+
+          transition: opacity 0.8s ease;
         }
 
+        .project-brand.poem-ending {
+          opacity: 0.55;
+          visibility: visible;
+        }
+        .social-icons img {
+          width: 18px;
+          height: 18px;
+        }
+
+        .mv-logo {
+          height: 26px;
+        }
         h1 {
           font-size: 42px;
         }
@@ -259,6 +346,76 @@
         h2 {
           font-size: 28px;
         }
+      }
+
+      .project-brand:hover {
+        transition: opacity 0.3s ease;
+      }
+
+      .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        transform: translateY(-22px) translateX(20px);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+
+        pointer-events: none;
+      }
+
+      .social-icons img {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      .mv-logo {
+        height: 90px;
+        width: auto;
+      }
+
+      .project-brand.social-open .social-icons {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-22px) translateX(0);
+        pointer-events: auto;
+      }
+      /* Навядзенне на МВ */
+
+      .project-brand:has(.mv-logo:hover) .social-icons img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.mv-logo:hover) .mv-logo {
+        opacity: 0.25;
+      }
+
+      /* Навядзенне на Instagram */
+
+      .project-brand:has(.ig-link:hover) .ig-link img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.ig-link:hover) .fb-link img,
+      .project-brand:has(.ig-link:hover) .mv-logo {
+        opacity: 0.25;
+      }
+
+      /* Навядзенне на Facebook */
+
+      .project-brand:has(.fb-link:hover) .fb-link img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.fb-link:hover) .ig-link img,
+      .project-brand:has(.fb-link:hover) .mv-logo {
+        opacity: 0.25;
       }
     </style>
   </head>
@@ -324,7 +481,7 @@
             лампадкай у іх гонар.
           </p>
 
-          <p>
+          <p class="last-stanza">
             Сьветлай памяці продкам і ўсім беларусам, якія жылі, змагаліся і
             стваралі дзеля Бацькаўшчыны. 🕯️🍂
           </p>
@@ -333,12 +490,32 @@
       <!-- right -->
     </div>
     <!-- layout -->
+    <div class="project-brand">
+      <div class="social-icons">
+        <a
+          class="ig-link"
+          href="https://www.instagram.com/alehlazouski/"
+          target="_blank"
+        >
+          <img src="instagram-white.png" alt="Instagram" />
+        </a>
 
+        <a
+          class="fb-link"
+          href="https://www.facebook.com/muzykaviersau"
+          target="_blank"
+        >
+          <img src="facebook-white.png" alt="Facebook" />
+        </a>
+      </div>
+
+      <img src="avatar MV-белы.png" alt="Музыка Вершаў" class="mv-logo" />
+    </div>
     <script>
       const tracks = [
         {
           title: "01. НА ДЗЯДЫ",
-          author: "Паводле матываў паэмы «Дзяды» Адама Міцкевіча",
+          author: "Паводле матываў Адама Міцкевіча",
           url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/7ff496dd-87ab-48a7-a8a1-55985f8daa9d.mp3",
         },
 
@@ -464,6 +641,34 @@
       }
 
       drawVisualizer();
+      const brand = document.querySelector(".project-brand");
+
+      let hideTimer;
+
+      function showSocials() {
+        clearTimeout(hideTimer);
+        brand.classList.add("social-open");
+      }
+
+      function hideSocials() {
+        hideTimer = setTimeout(() => {
+          brand.classList.remove("social-open");
+        }, 5000);
+      }
+
+      brand.addEventListener("mouseenter", showSocials);
+      brand.addEventListener("mouseleave", hideSocials);
+      const lastStanza = document.querySelector(".last-stanza");
+
+      window.addEventListener("scroll", () => {
+        const rect = lastStanza.getBoundingClientRect();
+
+        if (rect.bottom < window.innerHeight - 50) {
+          brand.classList.add("poem-ending");
+        } else {
+          brand.classList.remove("poem-ending");
+        }
+      });
     </script>
   </body>
 </html>
