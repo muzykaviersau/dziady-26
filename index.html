@@ -42,7 +42,7 @@
       }
       .player {
         width: 100%;
-        margin: 20px 0;
+        margin: 25px 0;
       }
       #currentTrack {
         color: #d9c39a;
@@ -663,7 +663,7 @@
       window.addEventListener("scroll", () => {
         const rect = lastStanza.getBoundingClientRect();
 
-        if (rect.bottom < window.innerHeight - 50) {
+        if (rect.bottom < window.innerHeight) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
