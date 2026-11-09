@@ -21,6 +21,14 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;500&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         background:
@@ -45,11 +53,13 @@
         margin: 25px 0;
       }
       #currentTrack {
+        font-family: "Ubuntu", sans-serif;
+        font-size: 22px;
+        font-weight: 500;
         color: #d9c39a;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 15px 0;
+        letter-spacing: 0.02em;
       }
+
       .track-marquee {
         position: relative;
         overflow: hidden;
@@ -61,15 +71,15 @@
       .track-marquee span {
         position: absolute;
         white-space: nowrap;
-        animation: marquee 12s linear infinite;
+        animation: marquee 25s linear infinite;
       }
       @keyframes marquee {
         from {
-          transform: translateX(20%);
+          transform: translateX(100%);
         }
 
         to {
-          transform: translateX(-50%);
+          transform: translateX(-120%);
         }
       }
       .track {
@@ -608,7 +618,9 @@
         player.src = tracks[index].url;
 
         currentTrack.textContent =
-          tracks[index].title + " — " + tracks[index].author;
+          tracks[index].title.replace(/^\d+\.\s*/, "") +
+          " · " +
+          tracks[index].author;
 
         document.querySelectorAll(".track").forEach((el, i) => {
           el.classList.toggle("active", i === index);
