@@ -31,6 +31,7 @@
     />
     <style>
       body {
+        min-height: 100vh;
         background:
           radial-gradient(
             circle at 20% 20%,
@@ -107,7 +108,6 @@
         font-size: 0.75em;
         margin: 0;
         line-height: 1.1;
-        font-family: Inter, Arial, sans-serif;
         font-family: "Inter", sans-serif;
         font-weight: 300; /* Light */
       }
@@ -119,12 +119,91 @@
         font-weight: 500; /* Medium */
       }
 
+      .music-panel {
+        position: absolute;
+
+        left: 0px;
+
+        width: calc(100% - 40px);
+
+        z-index: 2;
+      }
+
+      .playlist-panel {
+        position: absolute;
+
+        top: 3px;
+        left: 0;
+
+        width: 800px;
+
+        z-index: 2;
+      }
+      .player-panel {
+        position: absolute;
+
+        top: 407px;
+        left: 0;
+
+        width: 800px;
+
+        z-index: 2;
+      }
+      .credit-panel {
+        position: absolute;
+
+        top: 500px;
+        left: 0;
+
+        width: 800px;
+
+        z-index: 2;
+      }
+
+      .project-note {
+        text-align: center;
+        margin: 0;
+      }
+      .project-note .heritage {
+        font-size: 8px;
+        color: rgba(217, 195, 154, 0.6);
+        letter-spacing: 0.5px;
+      }
+      .project-note .project-credit {
+        margin-top: 8px;
+        font-size: 10px;
+        color: rgba(181, 181, 181, 0.55);
+      }
+      .project-note .project-credit a {
+        color: #b8843c;
+        text-decoration: none;
+      }
+
+      .project-note .project-credit a:hover {
+        color: #d8b36a;
+        text-decoration: underline;
+      }
+
+      .divider-line {
+        position: absolute;
+
+        left: 58%;
+
+        top: -67px;
+
+        height: 900px;
+
+        width: 1px;
+
+        background: rgba(216, 179, 106, 0.25);
+      }
       .now {
         color: #d8d8d8;
         font-size: 1.05em;
         width: 450px;
       }
       .layout {
+        min-height: 820px;
         display: flex;
         gap: 40px;
         max-width: 1400px;
@@ -146,7 +225,9 @@
         margin-left: 107px;
       }
       .left {
-        border-right: 1px solid rgba(216, 179, 106, 0.25);
+        background: transparent;
+        position: relative;
+        overflow: visible;
         padding-right: 80px;
         padding-left: 20px;
         flex: 5;
@@ -157,33 +238,57 @@
         text-shadow: 0 0 10px rgba(217, 195, 154, 0.25);
       }
       .right {
-        transform: translate(30px, 0px);
+        transform: translate(19px, 0px);
       }
+
       .description {
-        width: 500px;
-        max-width: 500px;
+        width: 536px;
+        height: 890px;
+        max-width: 536px;
+
+        position: relative;
+        overflow: hidden;
 
         margin: 1px auto;
-
-        padding: 78% 5% 25% 5%;
-
-        color: #f0f0f0;
-        font-family: Inter;
-        font-size: 13px;
-        font-weight: 300;
-        line-height: 1.5;
-        letter-spacing: 0px;
-        background:
-          linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)),
-          url("kurapaty.jpg");
-        background-size: cover;
-        background-position: center 28%;
-        background-repeat: no-repeat;
 
         border-right: 3px solid #c18b3a;
         border-radius: 12px;
       }
+      .poem-bg {
+        position: absolute;
+        inset: 0;
 
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)),
+          url("kurapaty.jpg");
+
+        background-size: 255%;
+        background-position: center top;
+      }
+      .poem-text {
+        position: relative;
+
+        padding: 304px 25px 120px 25px;
+
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+
+        line-height: 1.65;
+        letter-spacing: 0.2px;
+
+        color: #f0f0f0;
+
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+
+        z-index: 2;
+      }
+      .poem-text strong {
+        color: #e5cfa0;
+      }
+      .poem-text p:last-child {
+        opacity: 0.75;
+      }
       .description p {
         text-align: left;
         margin-bottom: 8px;
@@ -233,8 +338,15 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        opacity: 0.55;
+        visibility: hidden;
+        transition: opacity 0.8s ease;
+
+        opacity: 0;
         z-index: 999;
+      }
+      .project-brand.poem-ending {
+        opacity: 0.55;
+        visibility: visible;
       }
       .hero-info h1 {
         padding-left: 40px;
@@ -258,7 +370,6 @@
           box-shadow: 0 0 15px rgba(216, 179, 106, 0.25) !important;
         }
         .left {
-          border-right: none;
           padding-right: 0;
           padding-left: 0;
           width: 100%;
@@ -290,6 +401,19 @@
           margin-left: auto;
           margin-right: auto;
         }
+        .music-panel {
+          position: static;
+          width: 100%;
+        }
+        .playlist-panel,
+        .player-panel,
+        .credit-panel {
+          margin-top: 20px;
+          position: static;
+          width: 100%;
+          left: auto;
+          top: auto;
+        }
         .hero {
           max-width: 300px;
           margin-left: auto;
@@ -299,7 +423,6 @@
           font-size: 0.75em;
           margin: 0;
           line-height: 1.1;
-          font-family: Inter, Arial, sans-serif;
           font-family: "Inter", sans-serif;
           font-weight: 300; /* Light */
         }
@@ -327,6 +450,9 @@
         #visualizer {
           display: none;
         }
+        .divider-line {
+          display: none;
+        }
         .now {
           display: none;
         }
@@ -348,11 +474,11 @@
         .description {
           width: 300px;
           max-width: 300px;
+          height: auto;
           box-sizing: border-box;
 
           margin-left: auto;
           margin-right: auto;
-          padding: 27% 5% 30% 5%;
 
           font-family: "Inter", sans-serif;
           font-weight: 300; /* Light */
@@ -362,6 +488,24 @@
           border-right: 3px solid #c18b3a;
           background-size: cover;
           background-position: center;
+        }
+        .poem-bg {
+          background-repeat: no-repeat;
+          background-position: 55% center;
+
+          background-size: cover;
+        }
+        .poem-text {
+          position: relative;
+          left: 0;
+          top: 0;
+          width: auto;
+
+          padding: 90px 20px 80px 20px;
+
+          z-index: 2;
+
+          text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
         }
         .project-brand {
           position: fixed;
@@ -375,16 +519,22 @@
 
           transition: opacity 0.8s ease;
         }
-
-        .project-brand.poem-ending {
-          opacity: 0.55;
+        .social-icons {
+          opacity: 1;
           visibility: visible;
+          transform: translateY(0);
+          pointer-events: auto;
         }
         .social-icons img {
           width: 18px;
           height: 18px;
         }
-
+        .project-brand.poem-ending .social-icons {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: translateY(0) !important;
+          pointer-events: auto !important;
+        }
         .mv-logo {
           height: 26px;
         }
@@ -427,8 +577,28 @@
       .mv-logo {
         height: 90px;
         width: auto;
-      }
 
+        opacity: 0.6;
+        transition:
+          opacity 0.3s ease,
+          filter 0.3s ease;
+      }
+      .description::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 80px;
+
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0.85)
+        );
+
+        pointer-events: none;
+      }
       .project-brand.social-open .social-icons {
         opacity: 1;
         visibility: visible;
@@ -442,7 +612,9 @@
       }
 
       .project-brand:has(.mv-logo:hover) .mv-logo {
-        opacity: 0.25;
+        opacity: 1;
+
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(216, 179, 106, 0.4));
       }
 
       /* Навядзенне на Instagram */
@@ -486,55 +658,69 @@
           </div>
         </div>
 
-        <h2></h2>
+        <div class="music-panel">
+          <div class="playlist-panel">
+            <div id="playlist"></div>
+          </div>
 
-        <div id="playlist"></div>
+          <div class="player-panel">
+            <audio id="player" controls class="player"></audio>
+          </div>
 
-        <audio id="player" controls class="player"></audio>
-        <p style="text-align: center; font-size: 12px; color: #999">
-          Музыка створана пры дапамозе
-          <a
-            href="https://meloflow.ai"
-            target="_blank"
-            style="color: #b8843c; text-decoration: none"
-          >
-            MeloFlow
-          </a>
-        </p>
+          <div class="credit-panel">
+            <div class="project-note">
+              <div class="heritage">
+                З ПАВАГАЙ ДА АЎТАРАЎ І ЛЮБОЎЮ ДА БЕЛАРУСКАЙ СПАДЧЫНЫ
+              </div>
+
+              <div class="project-credit">
+                Музыка створана пры дапамозе
+                <a href="https://meloflow.ai"> MeloFlow </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="divider-line"></div>
+
       <div class="right">
         <div class="description">
-          <div class="description-title">✨ ДЗЯДЫ ✨</div>
-          <p>
-            Гэта ня толькі памяць пра далёкіх продкаў. Гэта таксама дзень, калі
-            мы ўзгадваем усіх беларусаў, што ў розныя часы аддавалі свае сілы,
-            талент, свабоду і жыцьцё дзеля таго, каб жыла Беларусь.
-          </p>
+          <div class="poem-bg"></div>
 
-          <p>
-            У гэтай падборцы сабраны музычныя інтэрпрэтацыі твораў беларускіх
-            аўтараў. Іх словы дайшлі да нас насуперак войнам, забаронам, ссылкам
-            і шматлікім спробам сьцерці нашу памяць і мову.
-          </p>
+          <div class="poem-text">
+            <div class="description-title">✨ ДЗЯДЫ ✨</div>
+            <p>
+              Гэта ня толькі памяць пра далёкіх продкаў. Гэта таксама дзень,
+              калі мы ўзгадваем усіх беларусаў, што ў розныя часы аддавалі свае
+              сілы, талент, свабоду і жыцьцё дзеля таго, каб жыла Беларусь.
+            </p>
 
-          <p>
-            На працягу стагодзьдзяў беларуская культура неаднаразова станавілася
-            мішэньню русіфікацыі і імпэрскай палітыкі. Аднак яна працягвала жыць
-            у слове, песьні і народнай памяці.
-          </p>
+            <p>
+              У гэтай падборцы сабраны музычныя інтэрпрэтацыі твораў беларускіх
+              аўтараў. Іх словы дайшлі да нас насуперак войнам, забаронам,
+              ссылкам і шматлікім спробам сьцерці нашу памяць і мову.
+            </p>
 
-          <p>
-            Сёньня, як і раней, мы ўспамінаем ня толькі сваіх продкаў, але і
-            тых, хто ўжо ніколі не вернецца дадому. Тых, хто прысьвяціў сябе
-            Беларусі, яе слову, свабодзе і будучыні. Няхай гэтая музыка стане
-            яшчэ адной ціхай лампадкай у іх гонар.
-          </p>
+            <p>
+              На працягу стагодзьдзяў беларуская культура неаднаразова
+              станавілася мішэньню русіфікацыі і імпэрскай палітыкі. Аднак яна
+              працягвала жыць у слове, песьні і народнай памяці.
+            </p>
 
-          <p class="last-stanza">
-            Сьветлай памяці продкам і ўсім беларусам, якія жылі, змагаліся і
-            стваралі дзеля Бацькаўшчыны.
-          </p>
-          <p>🕯️🍂</p>
+            <p>
+              Сёньня, як і раней, мы ўспамінаем ня толькі сваіх продкаў, але і
+              тых, хто ўжо ніколі не вернецца дадому. Тых, хто прысьвяціў сябе
+              Беларусі, яе слову, свабодзе і будучыні. Няхай гэтая музыка стане
+              яшчэ адной ціхай лампадкай у іх гонар.
+            </p>
+
+            <p class="last-stanza">
+              Сьветлай памяці продкам і ўсім беларусам, якія жылі, змагаліся і
+              стваралі дзеля Бацькаўшчыны.
+            </p>
+            <p class="mv-trigger">🕯️🍂</p>
+          </div>
         </div>
       </div>
       <!-- right -->
@@ -559,7 +745,13 @@
         </a>
       </div>
 
-      <img src="avatar MV-белы.png" alt="Музыка Вершаў" class="mv-logo" />
+      <a href="https://muzykaviersau.github.io/bibliateka/">
+        <img
+          src="avatar MV-белы.png"
+          alt="Бібліятэка Музыкі Вершаў"
+          class="mv-logo"
+        />
+      </a>
     </div>
     <script>
       const tracks = [
@@ -710,17 +902,19 @@
 
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
-      const lastStanza = document.querySelector(".last-stanza");
+      const trigger = document.querySelector(".mv-trigger");
 
-      window.addEventListener("scroll", () => {
-        const rect = lastStanza.getBoundingClientRect();
+      window.addEventListener("scroll", updateBrand);
 
-        if (rect.bottom < window.innerHeight) {
+      function updateBrand() {
+        const rect = trigger.getBoundingClientRect();
+
+        if (rect.top <= window.innerHeight) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
         }
-      });
+      }
     </script>
   </body>
 </html>
